@@ -12,15 +12,6 @@ var getdetails =  Promise.all([
   .then(value => value.json())
   ])
   .then((value) => {
-    
-    let display = document.querySelector(".row") 
-    display.innerHTML=`<div >
-    <center>
-    <img  src="https://marsleevamedicity.com/wp-content/uploads/2021/01/loading-please-wait-icon-22.gif" 
-     alt="..."/>
-     <center/>
-    </div>`
-
     console.log(value)
     return value  
     //json response
