@@ -3,7 +3,9 @@ var caturl = "https://api.thecatapi.com/v1/breeds";
 var dogfacts = "https://catfact.ninja/fact";
 
 //fetching all the url using promise all
-var getdetails = ()=>{ 
+var getdetails =  Promise.all([
+  fetch(dogurl)
+  .then(()=>{
   let display = document.querySelector(".row") 
     display.innerHTML=`<div >
     <center>
@@ -11,11 +13,29 @@ var getdetails = ()=>{
      alt="..."/>
      <center/>
     </div>`
-  
-  Promise.all([
-  fetch(dogurl).then(value => value.json()),
-  fetch(caturl).then(value => value.json()),
-  fetch(dogfacts).then(value => value.json())
+  }).then(value => value.json()),
+  fetch(caturl)
+  .then(()=>{
+  let display = document.querySelector(".row") 
+    display.innerHTML=`<div >
+    <center>
+    <img  src="https://marsleevamedicity.com/wp-content/uploads/2021/01/loading-please-wait-icon-22.gif" 
+     alt="..."/>
+     <center/>
+    </div>`
+  })
+  .then(value => value.json()),
+  fetch(dogfacts)
+  .then(()=>{
+  let display = document.querySelector(".row") 
+    display.innerHTML=`<div >
+    <center>
+    <img  src="https://marsleevamedicity.com/wp-content/uploads/2021/01/loading-please-wait-icon-22.gif" 
+     alt="..."/>
+     <center/>
+    </div>`
+  })
+  .then(value => value.json())
   ])
   .then((value) => {
     console.log(value)
@@ -25,7 +45,7 @@ var getdetails = ()=>{
   .catch((err) => {
       console.log(err);
   });
-  }
+  
 
 
  //-------Display dog function starts -----------
