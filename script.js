@@ -5,17 +5,8 @@ var dogfacts = "https://catfact.ninja/fact";
 //fetching all the url using promise all
 var getdetails =  Promise.all([
   fetch(dogurl)
-  .then(value => value.json()),
-  fetch(caturl)
-  
-  .then(value => value.json()),
-  fetch(dogfacts)
-  .then(value => value.json())
-  ])
-  .then((value) => {
-    console.log(value)
-    
-    
+  .then(value => {
+       
   let display = document.querySelector(".row") 
     display.innerHTML=`<div >
     <center>
@@ -25,6 +16,15 @@ var getdetails =  Promise.all([
     </div>`
 
     
+    value.json()}),
+  fetch(caturl)
+  
+  .then(value => value.json()),
+  fetch(dogfacts)
+  .then(value => value.json())
+  ])
+  .then((value) => {
+    console.log(value)
     return value  
     //json response
   })
