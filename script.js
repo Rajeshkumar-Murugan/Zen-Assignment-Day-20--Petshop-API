@@ -14,9 +14,8 @@ var getdetails =  Promise.all([
   ])
   .then((value) => {
     console.log(value)
-    return value  
-    //json response
-  }).then(()=>{
+    
+    
   let display = document.querySelector(".row") 
     display.innerHTML=`<div >
     <center>
@@ -24,6 +23,10 @@ var getdetails =  Promise.all([
      alt="..."/>
      <center/>
     </div>`
+
+    
+    return value  
+    //json response
   })
   .catch((err) => {
       console.log(err);
