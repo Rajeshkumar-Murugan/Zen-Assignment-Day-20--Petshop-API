@@ -43,7 +43,7 @@ var getdetails =  Promise.all([
 
  //-------Display dog function starts -----------
   async function displaydog(){
-    console.log(resdata)
+    // console.log(resdata)
     // const data = await getdetails;
     const dogdata = resdata[0] // fetching dogs details
     const doglist = document.querySelector('.row');
@@ -94,7 +94,7 @@ var getdetails =  Promise.all([
       let resimage = await fetch(catimageURL+`${arr.reference_image_id}`, {method:"GET"});
       let jsdata = await resimage.json()
       // let image = await resimage;
-      console.log(jsdata)
+      // console.log(jsdata)
       
       catlist.innerHTML  += `
         <div class="col-sm-12 col-md-6 offset-md-2 col-lg-4 offset-lg-0 col-xl-3 col-xxl-3" id="content">
