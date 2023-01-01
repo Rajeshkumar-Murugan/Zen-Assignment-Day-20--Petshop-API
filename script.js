@@ -61,10 +61,11 @@ var getdetails =  Promise.all([
                   </div>
                   <div class="overlay">
                   <div class="text">                       
-                          <p>Name: ${arr.name}  </p>
-                          <p>Bread for: ${arr.bred_for}</p>
-                          <p>Origin: ${arr.origin}</p>
-                          <p>Life Span: ${arr.life_span}</p>
+                          <p><b>Name:</b> ${arr.name}  <br/>
+                          <b>Bread for:</b> ${arr.bred_for}<br/>
+                          <b>Origin:</b> ${arr.origin}<br/>
+                          <b>Life Span:</b> ${arr.life_span}<br/>
+                          <b>Temperament:</b> ${arr.temperament}</p>
                                                 
                    </div>       
                   </div>
@@ -94,6 +95,7 @@ var getdetails =  Promise.all([
       let jsdata = await resimage.json()
       // let image = await resimage;
       console.log(jsdata)
+      
       catlist.innerHTML  += `
         <div class="col-sm-12 col-md-6 offset-md-2 col-lg-4 offset-lg-0 col-xl-3 col-xxl-3" id="content">
               <div class="container"> 
@@ -102,12 +104,14 @@ var getdetails =  Promise.all([
                   </div>
                   <div class="overlay">
                   <div class="text">                       
-                          <p>Name: ${arr.name}  </p>
-                          <p>Temperament: ${arr.temperament}</p>
-                          <p>Origin: ${arr.origin}</p>
-                          <p>Life Span: ${arr.life_span}</p>
-                                               
-                   </div>       
+                          <p>
+                          <b>Name:</b> ${arr.name}  <br/>
+                          <b>Temperament:</b> ${arr.temperament}<br/>
+                          <b>Origin:</b> ${arr.origin}<br/>
+                          <b>Life Span:</b> ${arr.life_span}<br/></p>
+                          <a href=${arr.wikipedia_url}  class="btn btn-outline-light" target="_blank">Read More</a>
+                          
+                          </div>       
                   </div>
               </div>
         </div>
