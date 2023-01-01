@@ -2,17 +2,36 @@ var dogurl = "https://api.thedogapi.com/v1/breeds/";
 var caturl = "https://api.thecatapi.com/v1/breeds";
 var dogfacts = "https://catfact.ninja/fact";
 
+let isLoading = ()=>{
+  let display = document.querySelector(".row") 
+    display.innerHTML=`
+    <center>
+    <div class="spinner-border" role="status">
+  <span class="sr-only"></span>
+</div>
+</center>
+`
+  }
+
+  var resdata = []
 //fetching all the url using promise all
 var getdetails =  Promise.all([
   fetch(dogurl)
-  .then(value => value.json()),
+  .then(value => {
+    isLoading()
+    return value.json()}),
+
   fetch(caturl)
-  .then(value => value.json()),
+  .then(value => {
+    return value.json()}),
+
   fetch(dogfacts)
-  .then(value => value.json())
+  .then(value => {
+    return value.json()})
   ])
   .then((value) => {
-    console.log(value)
+    // console.log(value)
+    resdata = value
     return value  
     //json response
   })
@@ -24,9 +43,9 @@ var getdetails =  Promise.all([
 
  //-------Display dog function starts -----------
   async function displaydog(){
-    const data = await getdetails;
-    const dogdata = data[0] // fetching dogs details
-
+    console.log(resdata)
+    // const data = await getdetails;
+    const dogdata = resdata[0] // fetching dogs details
     const doglist = document.querySelector('.row');
     doglist.innerHTML = ''; //wipping the old data  
     
@@ -37,7 +56,8 @@ var getdetails =  Promise.all([
         <div class="col-sm-12 col-md-6 offset-md-2 col-lg-4 offset-lg-0 col-xl-3 col-xxl-3" id="content">
               <div class="container"> 
                   <div class="image-layout">
-                      <img src=${arr.image.url} class="image">   
+                  
+                      <img loading="lazy" src=${arr.image.url} class="image">   
                   </div>
                   <div class="overlay">
                   <div class="text">                       
@@ -50,6 +70,7 @@ var getdetails =  Promise.all([
                   </div>
               </div>
         </div>
+        
           ` 
     })  
   }
@@ -58,19 +79,26 @@ var getdetails =  Promise.all([
 
   //-------Display Cat function starts -----------
   async function displaycat(){
-    const data = await getdetails;
-    const catdata = data[1]
+    // const data = await getdetails;
+    // catimg = https://api.thecatapi.com/v1/images/0XYvRd7oD
+
+    catimageURL = "https://api.thecatapi.com/v1/images/"
+    const catdata = resdata[1]
     //console.log(users)
     const catlist = document.querySelector('.row');
     catlist.innerHTML = ''; //wipping the old data  
     // loading new data
-    catdata.forEach((arr) => {
-      console.log(arr.name)
+    catdata.forEach(async(arr) => {
+
+      let resimage = await fetch(catimageURL+`${arr.reference_image_id}`, {method:"GET"});
+      let jsdata = await resimage.json()
+      // let image = await resimage;
+      console.log(jsdata)
       catlist.innerHTML  += `
         <div class="col-sm-12 col-md-6 offset-md-2 col-lg-4 offset-lg-0 col-xl-3 col-xxl-3" id="content">
               <div class="container"> 
                   <div class="image-layout">
-                      <img src="https://api.thecatapi.com/v1/images/search?reference_image_id="+${arr.reference_image_id} class="image">   
+                      <img src=${jsdata.url} class="image">   
                   </div>
                   <div class="overlay">
                   <div class="text">                       
