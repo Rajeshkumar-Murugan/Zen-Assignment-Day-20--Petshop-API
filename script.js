@@ -70,7 +70,7 @@ var getdetails =  Promise.all([
         <div class="col-sm-12 col-md-6 offset-md-2 col-lg-4 offset-lg-0 col-xl-3 col-xxl-3" id="content">
               <div class="container"> 
                   <div class="image-layout">
-                      <img src=${arr.image.url} class="image">   
+                      <img src="https://api.thecatapi.com/v1/images/search?reference_image_id="+${arr.reference_image_id} class="image">   
                   </div>
                   <div class="overlay">
                   <div class="text">                       
