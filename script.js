@@ -48,16 +48,18 @@ var getdetails =  Promise.all([
     const dogdata = resdata[0] // fetching dogs details
     const doglist = document.querySelector('.row');
     doglist.innerHTML = ''; //wipping the old data  
-    
+    var  dogimageURL = "https://api.thedogapi.com/v1/images/";
     // loading new data
     dogdata.forEach((arr) => {
+      let resimage = await fetch(dogimageURL+`${arr.reference_image_id}`, {method:"GET"});
+      let jsdata = await resimage.json()
       
       doglist.innerHTML  += `
         <div class="col-sm-12 col-md-6 offset-md-2 col-lg-4 offset-lg-0 col-xl-3 col-xxl-3" id="content">
               <div class="container"> 
                   <div class="image-layout">
                   
-                      <img loading="lazy" src=${arr.image.url} class="image">   
+                      <img loading="lazy" src=${jsdata.url} class="image">   
                   </div>
                   <div class="overlay">
                   <div class="text">                       
