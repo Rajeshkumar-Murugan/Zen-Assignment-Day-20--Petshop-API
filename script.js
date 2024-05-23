@@ -50,7 +50,7 @@ var getdetails =  Promise.all([
     doglist.innerHTML = ''; //wipping the old data  
     
     // loading new data
-    dogdata.forEach((arr) => {
+    dogdata.forEach(async (arr) => {
       var  dogimageURL = "https://api.thedogapi.com/v1/images/"+arr.reference_image_id;
       let resimage = await fetch(dogimageURL, {method:"GET"});
       let jsdata = await resimage.json()
